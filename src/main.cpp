@@ -43,8 +43,6 @@ class Spy: public Person, public Subject
 
 class Judge: public Person, public Observer
 {
-	private:
-		string name;
 	public:
 		Judge(const char *name);
 		void Update() const;
@@ -82,12 +80,12 @@ void Spy::Notify() const
 /*
 	Judge methods
 */
-Judge::Judge(const char *name) : name(name) {}
+Judge::Judge(const char *name) : Person(name) {}
 void Judge::Update() const
 {
-	cout << "[My name is: " << name
-		<< ", I'm sending a spy to prison!]"
-		<< endl;
+	cout << '[';
+	Person::identity();
+	cout << " I'm sending a spy to prison!]" << endl;
 }
 
 int main(int argc, char** argv) {
